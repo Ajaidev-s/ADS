@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+  int data;
+  struct node *left, *right;
+};
+
+// Create a node
+struct node * newNode(int item) {
+  struct node *temp = (struct node *)malloc(sizeof(struct node));
+  temp->data= item;
+  temp->left = temp->right = NULL;
+  return temp;
+}
+void inorder(struct node *root)
+    {
+        if(root!=NULL)
+            {
+                //left sub tree
+                inorder(root->left);
+                //printing root
+                printf("\n %d \n",root->data);
+                //inordering rigth sub tree
+                inorder(root->right);
+
+            }
+    }
+struct node * insert(struct node *root,int item)
+      {
+        if(root==NULL)
+          {
+            return newNode(item);
+          }
+        if(item<root->data)
+            {
+                root->left=insert(root->left,item);
+            }  
+        else
+            {
+               root->right=insert(root->right,item); 
+            }
+        return root;
+      }
+int main()
+    {
+        struct node *start=NULL;
+        int choice,item;
+        do{
+            printf("\n1.insert \n2.inorder traversel");
+            printf("enter your choice");
+            scanf("%d",&choice);
+            switch(choice)
+            {
+                case 1:   printf("enter the value to be inserted");
+                          scanf("%d",&item);
+                          start=insert(start,item);
+                          break;
+                case 2: inorder(start);
+                        break;          
+            }
+        }while(choice!=5);
+
+    }
