@@ -135,7 +135,11 @@ void ins_pos()
 	temp->next=NULL;
 	if(head==NULL)
 	  {
+		
 	    head=temp;
+		temp->prev=NULL;
+		temp->next=NULL;
+		end=temp;
 	  }
 	else
 	  {
@@ -147,7 +151,7 @@ void ins_pos()
 		
 		 printf("%d",ptr->data);
 		 ptr=ptr->next;
-		 nexxt=ptr->next;
+		
 	       }
 		   if(ptr==head && i==(pos))
 			{
@@ -164,7 +168,7 @@ void ins_pos()
 			}
 	    else if(i==(pos-1))
 	       {
-			
+	    nexxt=ptr->next;	
 		swap=ptr->next;
 		temp->next=swap;
 		nexxt->prev=temp;
