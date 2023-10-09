@@ -164,11 +164,12 @@ void ins_pos()
 			}
 	    else if(i==(pos-1))
 	       {
+			
 		swap=ptr->next;
+		temp->next=swap;
+		nexxt->prev=temp;
 		ptr->next=temp;
 		temp->prev=ptr;
-		nexxt->prev=temp;
-		temp->next=swap;
 		
 	       }
 	     else
