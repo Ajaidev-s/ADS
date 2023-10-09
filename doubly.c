@@ -26,9 +26,13 @@ void ins_strt()
 	temp->next=head;
     temp->prev=NULL;
     if(head==NULL)
+	{
         end=temp;
-	//now temp has the adress of first element in current linkedlist.so we asign that adress to head
-    head->prev=temp;
+	}
+	else
+	{
+		head->prev=temp;
+	}  
 	head=temp;
      }
 void ins_end()
@@ -52,16 +56,12 @@ void ins_end()
 	else
 	  {
 	    ptr=head;
-	    //to find the last element in linked list we go trough the linked list until we find the pointer with null which indicate the last element
 	    while(ptr->next!=NULL)
 		{
 		    ptr=ptr->next;
 		}
-	    //then we asign the adress of new now(temp) to the pointer of last not which means the new node is connected to last node
 	    ptr->next=temp;
         temp->prev=ptr;
-
-		
 	  }
      }
 void display()
@@ -86,11 +86,14 @@ void display()
      }
 void dlt_strt()
 	{
-		struct node *dlt;
+		struct node *dlt,*second;
 		dlt=head;
 		if(dlt!=NULL)
-		  {
+		  { 
 			head=dlt->next;
+			second=dlt->next;
+			second->prev=NULL;
+
 			printf("\n deleted element is %d \n",dlt->data);
 			free(dlt);
 		  }
@@ -119,11 +122,67 @@ void dis_from_end()
 
  
     }
+void ins_pos()
+     {
+	int data,pos,i;
+	struct node *ptr,*swap,*temp,*nexxt;
+	printf("\nenter the value to input : ");
+	scanf("%d",&data);
+	printf("\n enter the possition");
+	scanf("%d",&pos);
+	temp=(struct node*)malloc(sizeof(dummy));
+	temp->data=data;
+	temp->next=NULL;
+	if(head==NULL)
+	  {
+	    head=temp;
+	  }
+	else
+	  {
+	    ptr=head;
+		i=1;
+
+	    for(;i<(pos-1)&&(ptr->next!=NULL);i++)
+	       {
+		
+		 printf("%d",ptr->data);
+		 ptr=ptr->next;
+		 nexxt=ptr->next;
+	       }
+		   if(ptr==head && i==(pos))
+			{
+              ptr->prev=temp;
+			  temp->next=ptr;
+			  temp->prev=NULL;
+			  head=temp;
+			}
+        else if(ptr==end && i==(pos-1))
+			{
+              ptr->next=temp;
+			  temp->prev=ptr;
+			  end=temp;
+			}
+	    else if(i==(pos-1))
+	       {
+		swap=ptr->next;
+		ptr->next=temp;
+		temp->prev=ptr;
+		nexxt->prev=temp;
+		temp->next=swap;
+		
+	       }
+	     else
+	       {
+		 printf("invalid position");
+	       }
+	  }
+     }
+
 int main()
     {
 	int choice;
 	do{
-	    printf("\n1.add at start\n2.add at end\n3.display\n4.display from end \n10.exit");
+	    printf("\n1.add at start\n2.add at end\n3.display\n4.display from end \n5.insertion at possition \n10.exit");
 	    printf("\n\nEnter your choice");
 	    scanf("%d",&choice);
 	    switch(choice)
@@ -137,6 +196,8 @@ int main()
 			         break;
             case 4:dis_from_end();
                     break;
+			case 5:ins_pos();
+					break;
 
              case 10 : printf("exiting");
 			     break;
