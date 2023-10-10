@@ -15,7 +15,7 @@ struct node *head=NULL,*end=NULL;
 struct node dummy;
 void ins_strt()
      {  int data;
-	struct node *ptr,*temp;
+	struct node *temp;
 	printf("\nenter the value to input : ");
 	scanf("%d",&data);
 	//creating a node and saving its address in temp
@@ -91,9 +91,7 @@ void dlt_strt()
 		if(dlt!=NULL)
 		  { 
 			head=dlt->next;
-			second=dlt->next;
-			second->prev=NULL;
-
+			head->prev=NULL;
 			printf("\n deleted element is %d \n",dlt->data);
 			free(dlt);
 		  }
@@ -182,12 +180,70 @@ void ins_pos()
 	       }
 	  }
      }
+void dlt_pos()
+	{	struct node *ptr,*previous,*nexxt;
+		int pos;
+		printf("enter the position to delete");
+		scanf("%d",&pos);
+		ptr=head;
+		if(head==NULL)
+			{
+				printf("Doubly linked list is already empty");
+			}
+		else
+			{
+				int i=1;
+				while(ptr->next!=NULL && i!=pos)
+					{
+						ptr=ptr->next;
+						i++;
+					}
+				if(ptr==head && i==pos)
+					{
+						head=ptr->next;
+						head->prev=NULL;
+						free(ptr);
+					}
+				else if(ptr==end && i==pos)
+					{
+						end=ptr->prev;
+						end->next=NULL;
+						free(ptr);
+					}
+				else if(i==pos)
+					{
+						previous=ptr->prev;
+						nexxt=ptr->next;
+						previous->next=nexxt;
+						nexxt->prev=previous;
+
+					}
+				else
+					printf("invalid position");
+			}
+	}
+void dlt_end()
+	{	struct node *ptr;
+		ptr=end;
+		if(ptr==NULL)
+			{
+				printf("empty doubly linked list");
+			}
+		else
+			{
+				end=ptr->prev;
+				end->next=NULL;
+				printf("delection the element %d",ptr->data);
+				free(ptr);
+
+			}
+	}	
 
 int main()
     {
 	int choice;
 	do{
-	    printf("\n1.add at start\n2.add at end\n3.display\n4.display from end \n5.insertion at possition \n10.exit");
+	    printf("\n1.add at start\n2.add at end\n3.display\n4.display from end \n5.insertion at possition\n6.delection at start\n7.delection at end\n8.Delection at position \n10.exit");
 	    printf("\n\nEnter your choice");
 	    scanf("%d",&choice);
 	    switch(choice)
@@ -203,7 +259,12 @@ int main()
                     break;
 			case 5:ins_pos();
 					break;
-
+			case 6:dlt_strt();
+					break;
+			case 7:dlt_end();
+					break;
+			case 8:dlt_pos();
+					break;
              case 10 : printf("exiting");
 			     break;
 		    default : printf("Invalid choice .if you want to exit pls enter 5 as choice");
