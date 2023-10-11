@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<conio.h>
 struct node
       {
 	 int data;
@@ -237,13 +236,37 @@ void dlt_end()
 				free(ptr);
 
 			}
+	}
+void search()
+	{
+	  int data,i;
+	  struct node *ptr;
+	  ptr=head;
+	  printf("enter the element to search");
+	  scanf("%d",&data);
+	  for(i=1;ptr->next!=NULL;i++)
+	  	{
+	  	   if(ptr->data==data)
+	  		{
+	  		  printf("\ndata found at position %d \n",i);
+	  		  
+	  		}
+	  	    ptr=ptr->next;
+	  	 
+	  	}
+	  if(ptr->data==data)
+	  		{
+	  		  printf("\ndata found at position %d \n",i);
+	  		  
+	  		}
+	  
 	}	
 
 int main()
     {
 	int choice;
 	do{
-	    printf("\n1.add at start\n2.add at end\n3.display\n4.display from end \n5.insertion at possition\n6.delection at start\n7.delection at end\n8.Delection at position \n10.exit");
+	    printf("\n1.add at start\n2.add at end\n3.display\n4.display from end \n5.insertion at possition\n6.delection at start\n7.delection at end\n8.Delection at position \n9.search\n10.exit");
 	    printf("\n\nEnter your choice");
 	    scanf("%d",&choice);
 	    switch(choice)
@@ -265,12 +288,13 @@ int main()
 					break;
 			case 8:dlt_pos();
 					break;
+			case 9:search();
+				break;
              case 10 : printf("exiting");
 			     break;
 		    default : printf("Invalid choice .if you want to exit pls enter 5 as choice");
 
 		}
 	}while(choice!=10);
-	getch();
 	return 0;
     }
