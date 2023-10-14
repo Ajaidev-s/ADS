@@ -1,16 +1,25 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<conio.h>
 struct node
       {
 	 int data;
-	 // creating a node(struct) pointer to point next element of linked list;
 	 struct node *next;
 
       };
-//creating pointer head of type node(struct) to save the starting address of the linked list .since starting there are no elements in linked list its assigned with NULL
 struct node *head=NULL;
 //function to insert
 struct node dummy;
+void push()
+     {  int data;
+	struct node *temp;
+	printf("\nenter the value to input : ");
+	scanf("%d",&data);
+	temp=(struct node*)malloc(sizeof(dummy));
+	temp->data=data;
+	temp->next=head;
+	head=temp;
+     }
 void display()
      {
 	int i=1;
@@ -18,100 +27,79 @@ void display()
 	ptr=head;
 	if(ptr!=NULL)
 	  {
-	    while(ptr->next!=NULL)
+	    while(ptr!=NULL)
 	      {
 	       printf("%d th element\t %d \n",i,ptr->data);
 	       ptr=ptr->next;
 	       i++;
 	      }
-	    printf("%d th element\t %d \n",i,ptr->data);
 	  }
 	else
 	   {
-	     printf("\n linked list is empty \n");
+	     printf("\n stack is empty \n");
 	   }
-
-
      }
-void ins_end()
+void pop()
+	{
+		struct node *dlt;
+		dlt=head;
+		if(dlt!=NULL)
+		  {
+			head=dlt->next;
+			printf("\n deleted element is %d \n",dlt->data);
+			free(dlt);
+		  }
+		 else
+		    printf("stack underflow") ;
+	}
+void search()
      {
-	int data;
-	struct node *ptr,*temp;
-	printf("\nenter the value to input : ");
-	scanf("%d",&data);
-	 temp=(struct node*)malloc(sizeof(dummy));
-	  temp->data=data;
-	  temp->next=NULL;
-	  //if the linkedlist is empty .then temp has the adress of the first element so we asign the adress to head
-	if(head==NULL)
+	int i=1,item;
+	struct node *ptr;
+	ptr=head;
+	if(ptr!=NULL)
 	  {
-	    head=temp;
+		printf("enter the element to search");
+		scanf("%d",&item);
+	    while(ptr!=NULL)
+	      {
+		   if(ptr->data==item)
+		   	{
+               printf("%d found at position \t %d from top of the stack\n",ptr->data,i);
+			}
+	       ptr=ptr->next;
+	       i++;
+	      }
 	  }
 	else
-	  {
-	    ptr=head;
-	    //to find the last element in linked list we go trough the linked list until we find the pointer with null which indicate the last element
-	    while(ptr->next!=NULL)
-		{
-		    ptr=ptr->next;
-		}
-	    //then we asign the adress of new now(temp) to the pointer of last not which means the new node is connected to last node
-	    ptr->next=temp;
-	  }
-     }
-void dlt_end()
-    {
-		struct node *dlt,*pre;
-		pre=NULL;
-		dlt=head;
-		int i;
-		if(dlt!=NULL)
-			{
-
-			   while(dlt->next!=NULL)
-			       {
-				    pre=dlt;
-			     	dlt=dlt->next;
-					i=i+1;
-			       }
-			   printf("\n delecting %d 4th element %d ",i,dlt->data);
-			   if(dlt==head)
-			     {head=NULL;
-			      free(dlt);
-				 }
-				else
-				  {
-			        pre->next=NULL;
-				  }
-			}
-		else 
-		    printf("The Linked list is empty");		
-	}
-
+	   {
+	     printf("\n stack is empty \n");
+	   }
+     }		 
 int main()
     {
 	int choice;
 	do{
-	    printf("\n1.insertion \n2.delection\n3.display \n4.exit");
+	    printf("\n1.push\n2.pop\n3.display\n4.search\n5.exit");
 	    printf("\n\nEnter your choice");
 	    scanf("%d",&choice);
 	    switch(choice)
 		{
-		    case 1 : ins_end();
+		    case 1 : push();
 			     break;
 
-		    case 2 : dlt_end();
+		    case 2 : pop();
 			     break;
-			     
 		    case 3 : display();
+			     break;	
+			case 4: search();
+				 break;	 
+		    case 5 : printf("exiting");
 			     break;
-			     	 
-		    case 4 : printf("exiting");
-			     break;
-		    default : printf("Invalid choice .if you want to exit pls enter 4 as choice");
+		    default : printf("Invalid choice .if you want to exit pls enter 5 as choice");
 
 		}
-	}while(choice!=4);
-	
+	}while(choice!=5);
+	getch();
 	return 0;
     }
