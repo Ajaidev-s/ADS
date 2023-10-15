@@ -157,7 +157,7 @@ void dlt_pos()
 
 			  }
 			  if(i==pos && dlt==head)
-			    { #or call dlt_start();
+			    { //or call dlt_start();
 					head=dlt->next;
 					printf("head is changed");
 					printf("\n the deleting elements is %d th value %d",i,dlt->data);
