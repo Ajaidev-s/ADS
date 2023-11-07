@@ -20,13 +20,15 @@ int main()
      printf("\n parent of A is %d \n",p_a);      
      p_b=find(b);
      printf("\n parent of B is %d \n",p_b);
-    if(p_a==p_b)
+    if(p_a!=p_b)
        { 
           printf("\na union b is\n");
           for(i=0;i<10;i++)
           {
            a_union_b[i]=a[i]||b[i];
+           
           }
+          display(a_union_b);
        }
     else
        printf("union not possible");
