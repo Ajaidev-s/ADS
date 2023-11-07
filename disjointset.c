@@ -50,7 +50,7 @@ void display(int *arr)
  	  for(i=0;i<10;i++)
  	     {
  	       if(*ar==1)
-               return i;
+               return u[i];
                ar++;
  	     }
  	  return flag;
