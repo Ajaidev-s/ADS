@@ -85,30 +85,35 @@ int main() {
   switch(choice)
   {
   case 1:
-  printf("\nEnter the number of elements to be inserted in BST:\n");
-  scanf("%d",&n);
-  printf("Enter the 'n' elements:\n");
-  for(i=0;i<n;i++)
-  {
+  printf("Enter the element to be inserted:\n");
   scanf("%d",&m);
-  root = insert(root, m);
-  }
+  root = insert(root,m);
   printf("\nInorder traversal:\n");
   inorder(root);
   break;
   case 2:
   printf("\nEnter the value to be deleted:\n");
-  scanf("%d",&d);
-  printf("\nAfter deleting %d\n",d);
-  root = deleteNode(root, d);
-  printf("Inorder traversal:\n");
-  inorder(root);
+  scanf("%d",&item);
+          search(root);
+          if(flag==0)
+             printf("element not found");
+          else
+          	{
+          	 printf("\nAfter deleting %d\n",item);
+                 root = deleteNode(root,item);
+                 printf("Inorder traversal:\n");
+                 inorder(root);
+          	}
+  
+  flag=0;
   break;
   case 3: printf("\n enter the value to be searched \n");
           scanf("%d",&item);
           search(root);
           if(flag==0)
              printf("element not found");
+          else
+              printf("%d found in binary search tree",item);
           flag=0;
   
   case 4:
@@ -127,11 +132,9 @@ void search(struct node *root)
          // Traverse root
          if(item==root->key)
          {
-         printf("%d found in binary search tree", root->key);
          flag=1;
          }
          // Traverse right
          search(root->right);
                }
-      
     }
