@@ -1,45 +1,53 @@
 #include<stdio.h>
-int visited[10]={0,0,0,0,0,0,0,0,0,0};
-int flag=0;
-#first row and first column is dummy with 0000000 s 
-int adj={{0,0,0,0,0,0,0},{0,0,0,0,0,-1,-1},{0,0,0,-1,-1,0,0},{0,-1,1,0,0,0,0},{0,0,-1,1,0,0,0},{0,0,0,0,1,1,0},{0,1,0,0,0,0,1};
-int check(int s,c)
-	{
-	  int p=s;
-	  int i,f1=0;
-	   if(flag==0)
-	    {
-	      for(i=1;i<=c;i++)
-	       {
-	         if(adj[p][i]==-1)
-	            {
-	              printf("ops invalid starting point");
-	              exit(0);
-	            }
-	       }
-	       printf("%d",&p);
-	       flag=1;
-	       visited[p]=1;
-	    }
-	  else 
-	     {
-	     	for(i=1;i<=c;i++)
-	       {
-	         if(adj[p][i]==-1 && visited[p]==0)
-	            {
-	              f1=-1
-	              
-	            }
-	       }
-	       if(f1==0)
-	       	{
-		       printf("%d",&p);
-		       
-		       visited[p]=1;
-		       #we need to modify the insidence matrix here
-		}
-	     }
-	}
-void topo(int r,int c,int s)
-	{
-	  
+int main()
+    {
+      int adj[10][10],v,i,j,k,visited[10]={0,0,0,0,0,0,0,0,0,0},flag,visit;
+      printf("\nEnter the no of vertices\n");
+      scanf("%d",&v);
+      printf("\nEnter the adjacency matrix\n");
+      //accepting the adjacency matrix
+      for(i=1;i<=v;i++)
+        {
+            for(j=1;j<=v;j++)
+                {
+                    scanf("%d",&adj[i][j]);
+                }
+        }
+        //this for loop is to continues the loop until all the vertex have been visited
+    for(visit=0;visit<v;)
+        {
+             for(i=1;i<=v;i++)
+                 {  
+                     
+                     //we only check if the vertex isnt visited alreadddy
+                     if(visited[i]!=1)
+                        {   
+                            //flag is very importent to check if the adjacency matrix has all zero in a column ,which represent no incoming edge 
+                            flag=0;
+                             for(j=1;j<=v;j++)
+                                {
+                                   if(adj[j][i]==1)
+                                     {
+                                        // this only execute if and only if that column have a 1 ,which means an incoming edge
+                                        flag=1;
+                                     }
+                                }
+                             //if the flag is 0 .means no incoming edge it is printed
+                            if(flag==0)
+                                {
+                                    printf("%d->",i);
+                                    visited[i]=1;
+                                    visit++;
+                                    //making the printed elements row all zero.logically deleting the vertex
+                                    for(k=1;k<=v;k++)
+                                        {
+                                            adj[i][k]=0;
+                                        }
+                                }
+                        }
+                     
+                 }
+        }
+      
+    return 0;
+    }
