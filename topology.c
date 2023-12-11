@@ -37,7 +37,7 @@ int main()
                                         flag=1;
                                      }
                                 }
-                             //if the flag is 0 .means no incoming edge it is printed
+                             //if the flag is 0 .means no incoming edge. so it is printed
                             if(flag==0)
                                 {
                                     printf("%d->",i);
