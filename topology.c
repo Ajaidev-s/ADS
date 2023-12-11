@@ -1,7 +1,7 @@
 #include<stdio.h>
 int main()
     {
-      int adj[10][10],v,i,j,k,visited[10]={0,0,0,0,0,0,0,0,0,0},flag,visit;
+      int adj[10][10],v,i,j,k,visited[10]={0,0,0,0,0,0,0,0,0,0},flag,visit,count=0;
       printf("\nEnter the no of vertices\n");
       scanf("%d",&v);
       printf("\nEnter the adjacency matrix\n");
@@ -15,7 +15,12 @@ int main()
         }
         //this for loop is to continues the loop until all the vertex have been visited
     for(visit=0;visit<v;)
-        {
+        {   count++;
+            if(count>100)
+               {
+                printf("ops the graph contain a cycle \n .......exiting......\n");
+                return 0;
+               }
              for(i=1;i<=v;i++)
                  {  
                      
