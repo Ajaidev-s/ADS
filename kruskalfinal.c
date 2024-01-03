@@ -17,15 +17,9 @@ int find(int i) {
 }
 
 void union_(int i, int j) {
-    if(j==find(j))
-      {
-        parent[j]=i;
-      }
-    else
-      {
-        parent[i]=j;
-      }
-
+    int a = find(i);
+    int b = find(j);
+    parent[a] = b;
 }
 
 int compare(const void* a, const void* b) {
@@ -50,8 +44,8 @@ void kruskal(int V, int E, Edge edges[],int t[V-1][3]) {
         if (find(u) != find(v)) {
             //matrix to represent minimum cost spanning tree
             //u+1 to adjust vertices to be 1-based
-               t[j][0]=u+1;
-               t[j][1]=v+1;
+               t[j][0]=u;
+               t[j][1]=v;
                t[j][2]=edges[i].w;
                j++;
             mincost += edges[i].w;
@@ -74,8 +68,7 @@ int main() {
     for (i = 0; i < E; i++) {
         printf("Edge %d: ", i + 1);
         scanf("%d %d %d", &edges[i].u, &edges[i].v, &edges[i].w);
-        edges[i].u--; // Adjust vertices to be 0-based
-        edges[i].v--;
+        
     }
 
     kruskal(V,E,edges,t);
