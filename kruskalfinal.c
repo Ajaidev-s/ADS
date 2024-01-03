@@ -30,7 +30,7 @@ void kruskal(int V, int E, Edge edges[],int t[V-1][3]) {
     int i, u, v,j=0;
     int mincost = 0;
 
-    for (i = 0; i < V; i++) {
+    for (i = 1; i <= V; i++) {
         parent[i] = i;
     }
 
