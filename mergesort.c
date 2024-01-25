@@ -31,11 +31,16 @@ void main()
                     c[k]=a[i];
                     i++;
                 }
-               else
+               else if(j<n)
                   {
                     c[k]=b[j];
                     j++;
                   }
+                else
+                    {
+                        c[k]=a[i];
+                        i++;
+                    }
             }
         //sort ended
 
