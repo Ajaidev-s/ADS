@@ -26,20 +26,25 @@ void main()
         
         for(k=0;k<p;k++)
             {
-               if(a[i]<b[j] && i<m)
+               if(a[i]<b[j] && i<m && j<n)
                 {
                     c[k]=a[i];
                     i++;
                 }
-               else if(j<n)
+               else if(a[i]>b[j] && i<m && j<n)
                   {
                     c[k]=b[j];
                     j++;
                   }
-                else
+                else if(i<m)
                     {
                         c[k]=a[i];
                         i++;
+                    }
+                else
+                    {
+                       c[k]=b[j];
+                       j++; 
                     }
             }
         //sort ended
