@@ -93,8 +93,10 @@ void delection()
                 rear=-1;
             }
         else
-            {   front=(front+1)%max;
+            {   
                 printf("\n delecting the element %d",cquee[front]);
+                front=(front+1)%max;
+                
             }
     }
 void search()
