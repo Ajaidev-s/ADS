@@ -35,12 +35,12 @@ int main()
      
      return 0;
    }
-void display(int *arr)
+void display(int ar[])
   {
-  int *ar=arr,i;
+  int i;
   for(i=0;i<10;i++)
     {
-      if(*ar==1)
+      if(ar[i]==1)
       printf("%d \t",u[i]);
       ar++;
     }
