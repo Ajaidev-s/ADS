@@ -45,15 +45,15 @@ void display(int ar[])
       
     }
   }
- int find(int *arr)
+ int find(int ar[])
  	{
- 	  int *ar=arr,i;
+ 	  int i;
  	  flag=flag-1;
  	  for(i=0;i<10;i++)
  	     {
- 	       if(*ar==1)
+ 	       if(ar[i]==1)
                return u[i];
-               ar++;
+               
  	     }
  	  return flag;
  	}
