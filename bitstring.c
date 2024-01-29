@@ -1,7 +1,7 @@
 
 #include<stdio.h>
 int u[10]={1,2,3,4,5,6,7,8,9,10};
-void display(int *arr);
+void display(int arr[]);
 int main()
    {
      int uni[10]={1,1,1,1,1,1,1,1,1,1};
@@ -47,12 +47,12 @@ int main()
      
    
    }
-void display(int *arr)
+void display(int ar[])
   {
-  int *ar=arr,i;
+  int i;
   for(i=0;i<10;i++)
     {
-      if(*ar==1)
+      if(ar[i]==1)
       printf("%d \t",u[i]);
       ar++;
   }
