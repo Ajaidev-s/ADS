@@ -54,6 +54,6 @@ void display(int ar[])
     {
       if(ar[i]==1)
       printf("%d \t",u[i]);
-      ar++;
+      
   }
   }
